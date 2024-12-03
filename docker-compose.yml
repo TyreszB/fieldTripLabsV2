@@ -1,7 +1,8 @@
 services:
   postgres:
     image: postgres:15-alpine
-    ports: -5432:5432
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_DB: feild_trip_lab
       POSTGRES_MOST_AUTH_METHOD: trust

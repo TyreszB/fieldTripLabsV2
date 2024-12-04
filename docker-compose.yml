@@ -4,5 +4,5 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: feild_trip_lab
-      POSTGRES_MOST_AUTH_METHOD: trust
+      POSTGRES_DB: fieldtriplabsv2
+      POSTGRES_HOST_AUTH_METHOD: trust

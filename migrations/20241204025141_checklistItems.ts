@@ -3,7 +3,7 @@ import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("checklistItems", (table) => {
-    table.string("id", 25).primary().unique();
+    table.increments("id").primary();
     table.string("itemName", 100).notNullable();
     table.integer("checklist_id").unsigned().notNullable();
     table

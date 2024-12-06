@@ -3,7 +3,7 @@ import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("users", (table) => {
-    table.string("id", 25).primary().unique();
+    table.increments("id").primary();
     table.string("username").notNullable().unique();
     table.string("fistName").notNullable();
     table.string("lastName").notNullable();

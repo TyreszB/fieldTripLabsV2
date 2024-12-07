@@ -23,3 +23,46 @@ model User {
   image String  // This will be a URL
   createdAt DateTime @default(now())
 }
+
+model Itinerary {
+  id String @id @default(cuid())
+  name String
+  startDate String
+  endDate String
+}
+
+model Checklist {
+  id String @id @default(cuid())
+  name String
+  confirm Boolean
+}
+
+model ChecklistItem {
+  id String @id @default(cuid())
+  itemName String
+}
+
+model Destination {
+  id String @id @default(cuid())
+  name String
+  address String
+  description String
+  place_id String
+  photo_url String
+}
+
+model Review {
+  id String @id @default(cuid())
+  content String
+  rating Int
+}
+
+model Photo {
+  id String @id @default(cuid())
+  photo_url String
+  caption String
+  
+}
+
+
+

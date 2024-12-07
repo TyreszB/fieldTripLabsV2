@@ -5,6 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments("id").primary();
     table.string("photoUrl").notNullable();
     table.string("caption").notNullable();
+    table.integer("review_id").unsigned().notNullable();
     table
       .foreign("review_id")
       .references("id")

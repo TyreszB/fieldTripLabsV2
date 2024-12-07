@@ -5,11 +5,13 @@ export async function up(knex: Knex): Promise<void> {
     table.increments("id").primary();
     table.string("content").notNullable();
     table.integer("rating").notNullable();
+    table.integer("user_id").unsigned().notNullable();
     table
       .foreign("user_id")
       .references("id")
       .inTable("users")
       .onDelete("CASCADE");
+    table.integer("destination_id").unsigned().notNullable();
     table
       .foreign("destination_id")
       .references("id")

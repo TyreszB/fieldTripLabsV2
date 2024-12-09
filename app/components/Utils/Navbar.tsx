@@ -10,10 +10,10 @@ const Navbar = () => {
       <div className="flex justify-between">
         <div className="flex flex-1 justify-around mt-3">
           <div>
-            <Link href={"#"}>Create</Link>
+            <Link href={"/itinerary"}>Create</Link>
           </div>
           <div>
-            <Link href={"#"}>About Us</Link>
+            <Link href={"/about"}>About Us</Link>
           </div>
           <div>
             <Link href={"/"}>Home</Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
               <Link href={"/signup"}>Sign Up</Link>
             </div>
             <div className="p-3">
-              <Link href={"#"}>Login</Link>
+              <Link href={"login"}>Login</Link>
             </div>
           </div>
         )}

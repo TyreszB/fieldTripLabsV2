@@ -12,6 +12,7 @@
     "db:migrate:make": "TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' knex migrate:make"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.0.1",
     "@types/node": "20.11.16",
     "@types/react": "18.2.54",

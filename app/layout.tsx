@@ -26,8 +26,10 @@ export default async function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <SessionProvider>
-            <Sidebar />
-            {children}
+            <div className="flex">
+              <Sidebar />
+              {children}
+            </div>
           </SessionProvider>
         </body>
       </html>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import Image from "next/image";
 import Logo from "../../../public/Logo.png";
 import {
@@ -8,33 +8,36 @@ import {
   Bars3BottomRightIcon,
 } from "@heroicons/react/24/outline";
 
+const SidebarContext = createContext();
+
 const Sidebar = ({ children }: any) => {
   const [expanded, setExpanded] = useState(true);
   return (
     <aside className="h-screen">
-      <nav className="h-full flex flex-col bg-gray border-r shadow-sm w-[300px]">
+      <nav
+        className={`h-full flex flex-col bg-gray border-r shadow-sm ${
+          expanded ? "w-[200px]" : "w-100"
+        }`}
+      >
         <div className=" p-4 pb-2 flex justify-around items-center">
           <Image
             src={Logo}
             alt="Logo"
             className={`overflow-hidden transition-all  ${
-              expanded ? "pl-4 w-32" : "w-0"
+              expanded ? "pl-4 w-[100px]" : "w-0"
             }`}
           />
           <button
-            className="p-1.5 rounded-lg bg-white h-5 w-5"
+            className=" flex p-1.5 rounded-lg bg-white h-10 w-10"
             onClick={() => setExpanded((curr) => !curr)}
           >
-            {expanded ? (
-              <ArrowLeftCircleIcon className="w-8 h-8" />
-            ) : (
-              <ArrowRightCircleIcon className="w-8 h-8" />
-            )}
+            {expanded ? <ArrowLeftCircleIcon /> : <ArrowRightCircleIcon />}
           </button>
         </div>
 
-        <ul className="flex-1 px-3">{children}</ul>
-
+        <SidebarContext.Provider value={expanded}>
+          <ul className="flex-1 px-3">{children}</ul>
+        </SidebarContext.Provider>
         <div className="border-t flex p-3">
           <Image src={Logo} alt="placeholder" className="w-10 h-10" />
           <div

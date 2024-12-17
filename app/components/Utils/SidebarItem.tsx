@@ -1,25 +1,68 @@
 import React, { useContext } from "react";
+import Link from "next/link";
+import { SidebarContext } from "./Sidebar";
+import {
+  HomeIcon,
+  PencilSquareIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 
-const SidebarItem = ({ icon, text, active, alert }) => {
+interface SidebarItem {
+  icon?: React.ReactNode;
+  text: string;
+  path: string;
+  active: boolean;
+}
+
+const sidebarData: SidebarItem[] = [
+  {
+    icon: <HomeIcon />,
+    text: "Home",
+    path: "/",
+    active: true,
+  },
+  {
+    icon: <PencilSquareIcon />,
+    text: "Create Itinerary",
+    path: "/itinerary",
+    active: false,
+  },
+  {
+    icon: <UserIcon />,
+    text: "Profile",
+    path: "/profile",
+    active: false,
+  },
+];
+
+const SidebarItem = () => {
   const { expanded } = useContext(SidebarContext);
+
   return (
-    <li
-      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors 
-    ${
-      active
-        ? "bg-gradient-to-t from-indigo-200 to-indigo-100 text-indigo-800"
-        : "hover:bg-indigo-50 text-gray-600"
-    }`}
-    >
-      {icon}
-      <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
-        }`}
-      >
-        {text}
-      </span>
-    </li>
+    <ul className="mt-10">
+      {sidebarData.map((item) => (
+        <Link href={item.path} key={item.text}>
+          <li
+            key={item.text}
+            className={`relative flex items-center  py-2 px-3 my-4 font-medium rounded-md cursor-pointer transition-colors w-150 h-10
+          ${
+            item.active
+              ? "bg-gradient-to-t from-sky-200 to-sky-100 text-sky-800"
+              : "hover:bg-sky-50 text-gray-600"
+          }`}
+          >
+            <div className="h-6 w-6">{item.icon}</div>
+            <span
+              className={`overflow-hidden transition-all ${
+                expanded ? " w-[150px] ml-3" : "hidden"
+              }`}
+            >
+              {item.text}
+            </span>
+          </li>
+        </Link>
+      ))}
+    </ul>
   );
 };
 

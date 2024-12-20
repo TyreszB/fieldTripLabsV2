@@ -6,6 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import SidebarItem from "./SidebarItem";
 
 export const SidebarContext = createContext();
+// Need to pull things from google oauth
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(true);

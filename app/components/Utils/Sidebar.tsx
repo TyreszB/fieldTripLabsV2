@@ -3,16 +3,21 @@ import React, { useState, createContext } from "react";
 import Image from "next/image";
 import Logo from "../../../public/Logo.png";
 import { useSession, signOut, signIn } from "next-auth/react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { redirect } from "next/navigation";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 import SidebarItem from "./SidebarItem";
 
 export const SidebarContext = createContext();
-// Need to pull things from google oauth
 
 const Sidebar = () => {
   const { data } = useSession();
   const [expanded, setExpanded] = useState(true);
-  console.log(data);
+
+  if (!data) redirect("/api/auth/signin");
 
   return (
     <aside className="h-screen">
@@ -64,12 +69,11 @@ const Sidebar = () => {
               <span className="text-xs text-gray-600">{data.user.email}</span>
             </div>
           </div>
+
+          <button className="w-8" onClick={() => signOut()}>
+            <ArrowRightOnRectangleIcon />
+          </button>
         </div>
-        {data ? (
-          <button onClick={() => signOut()}>Sign out</button>
-        ) : (
-          <button onClick={() => signIn()}>Sign In</button>
-        )}
       </nav>
     </aside>
   );

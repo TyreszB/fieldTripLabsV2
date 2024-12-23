@@ -10,6 +10,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import SidebarItem from "./SidebarItem";
+import capitalize from "../../Util/capitalize";
 
 export const SidebarContext = createContext();
 
@@ -65,12 +66,19 @@ const Sidebar = () => {
             }`}
           >
             <div className="leading-4">
-              <h4 className="font-semibold">{data.user.name}</h4>
-              <span className="text-xs text-gray-600">{data.user.email}</span>
+              <h4 className="font-semibold">{`${capitalize(
+                data.user.name.split(" ")[0]
+              )}  ${capitalize(data.user.name.split(" ")[1])}`}</h4>
+              <span className="text-xs text-gray-600">
+                {capitalize(data.user.email)}
+              </span>
             </div>
           </div>
 
-          <button className="w-8" onClick={() => signOut()}>
+          <button
+            className={expanded ? `w-8` : "hidden"}
+            onClick={() => signOut()}
+          >
             <ArrowRightOnRectangleIcon />
           </button>
         </div>

@@ -13,7 +13,6 @@ interface SidebarItem {
   path: string;
   active: boolean;
 }
-//comment
 
 const sidebarData: SidebarItem[] = [
   {

@@ -1,5 +1,4 @@
 "use client";
-require("dotenv").config({ path: "./.env" });
 import React, { useState, useEffect, useRef } from "react";
 import { GoogleMap, useLoadScript, Autocomplete } from "@react-google-maps/api";
 
@@ -7,7 +6,7 @@ const libraries = ["places"];
 
 const PlacesAutocomplete = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.GOOGLE_PLACES_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
     libraries,
   });
 

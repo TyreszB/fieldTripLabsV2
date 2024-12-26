@@ -2,16 +2,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GoogleMap, useLoadScript, Autocomplete } from "@react-google-maps/api";
 
-const libraries = ["places"];
+type Library = "places";
+
+const libraries: Library[] = ["places"];
 
 const PlacesAutocomplete = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY || "",
     libraries,
   });
 
   const [value, setValue] = useState("");
-  const autocompleteRef = useRef(null);
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
   const onPlaceChanged = () => {
     if (autocompleteRef.current) {

@@ -12,8 +12,8 @@ const PlacesAutocomplete = () => {
     libraries,
   });
 
-  const [value, setValue] = useState("");
-  // Look at this in the future
+  const [value, setValue] = useState<string>("");
+
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
   const onPlaceChanged = () => {

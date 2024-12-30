@@ -8,7 +8,7 @@ const libraries: Library[] = ["places"];
 
 const PlacesAutocomplete = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY || "",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? "",
     libraries,
   });
 
@@ -20,7 +20,7 @@ const PlacesAutocomplete = () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
 
-      console.log(place);
+      // console.log(place);
     }
   };
 

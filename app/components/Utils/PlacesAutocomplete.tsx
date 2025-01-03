@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { GoogleMap, useLoadScript, Autocomplete } from "@react-google-maps/api";
+import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 
 type Library = "places";
 

@@ -2,17 +2,22 @@
 import { useSession } from "next-auth/react";
 import capitalize from "./Util/capitalize";
 import PlacesAutocomplete from "./components/Utils/PlacesAutocomplete";
+import GoogleMap from "./components/Utils/GoogleMap";
 
 interface SessionData {
-  name: string;
-  email: string;
-  image: string;
+  name: string | null;
+  email: string | null;
+  image: string | null;
 }
 
 export default function Home() {
-  const { data }: SessionData = useSession();
+  const { data } = useSession();
 
-  const firstName = data.user.name.split(" ")[0];
+  if (!data?.user) {
+    return <div>Loading...</div>;
+  }
+
+  const firstName = data.user?.name?.split(" ")[0] ?? "Guest";
 
   return (
     <main>
@@ -22,6 +27,7 @@ export default function Home() {
       <div>Search your dream destination ...</div>
       <div>
         <PlacesAutocomplete />
+        <GoogleMap />
       </div>
       <div className="w-full inline-flex flex-nowrap">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">

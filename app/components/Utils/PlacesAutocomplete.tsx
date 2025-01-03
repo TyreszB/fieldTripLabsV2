@@ -20,7 +20,7 @@ const PlacesAutocomplete = () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
 
-      // console.log(place);
+      console.log(place);
     }
   };
 

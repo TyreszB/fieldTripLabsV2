@@ -1,6 +1,7 @@
 "use client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import React, { useEffect, useState } from "react";
+import nearbySearch from "../../Util/nearbySearch";
 
 interface GeoPosition {
   lat: number;
@@ -36,6 +37,11 @@ function GoogleMap() {
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));
   }, []);
+
+  if (finalPos) {
+    nearbySearch(finalPos);
+  }
+
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
       <div className="h-[500px] w-[500px]">

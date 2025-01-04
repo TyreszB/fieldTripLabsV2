@@ -1,12 +1,49 @@
 "use client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import React, { useEffect, useState } from "react";
-import nearbySearch from "../../Util/nearbySearch";
 
 interface GeoPosition {
   lat: number;
   lng: number;
 }
+
+const types: string[] = [
+  "resturant",
+  "art_gallery",
+  "art_studio",
+  "amusement_park",
+  "aquarium",
+  "botanical_garden",
+  "cultural_landmark",
+  "historical_place",
+  "monument",
+  "museum",
+  "national_park",
+  "observation_deck",
+  "park",
+  "performing_arts_theater",
+  "sculpture",
+  "tourist_attraction",
+  "zoo",
+  "wildlife_park",
+  "wildlife_refuge",
+  "amphitheatre",
+  "adventure_sports_center",
+  "hiking_area",
+  "beach",
+  "cycling_park",
+  "roller_coaster",
+  "skateboard_park",
+  "state_park",
+  "ferris_wheel",
+  "plaza",
+  "planetarium",
+  "picnic_ground",
+  "event_venue",
+  "visitor_center",
+  "concert_hall",
+  "opera_house",
+];
 
 const getGeoPosition = (): Promise<GeoPosition> => {
   let userConfirmed: any = confirm(
@@ -38,9 +75,25 @@ function GoogleMap() {
     getGeoPosition().then((pos) => setFinalPos(pos));
   }, []);
 
-  if (finalPos) {
-    nearbySearch(finalPos);
-  }
+  useEffect(() => {
+    if (finalPos) {
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
+      const typeQuery = types.join(",");
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${finalPos.lat},${finalPos.lng}&radius=500&type=${typeQuery}&key=${apiKey}`;
+
+      const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          console.log(data);
+        } catch (err) {
+          console.error("Error during API call:", err);
+        }
+      };
+
+      fetchData();
+    }
+  }, [finalPos]);
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>

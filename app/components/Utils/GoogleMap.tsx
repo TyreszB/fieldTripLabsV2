@@ -1,5 +1,6 @@
 "use client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface GeoPosition {
@@ -8,7 +9,6 @@ interface GeoPosition {
 }
 
 const types: string[] = [
-  "resturant",
   "art_gallery",
   "art_studio",
   "amusement_park",
@@ -19,7 +19,6 @@ const types: string[] = [
   "monument",
   "museum",
   "national_park",
-  "observation_deck",
   "park",
   "performing_arts_theater",
   "sculpture",
@@ -70,6 +69,7 @@ const getGeoPosition = (): Promise<GeoPosition> => {
 
 function GoogleMap() {
   const [finalPos, setFinalPos] = useState<GeoPosition | null>(null);
+  const [photos, setPhotos] = useState<string[] | null>(null);
 
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));
@@ -87,6 +87,8 @@ function GoogleMap() {
           const response = await fetch(url, { method: "GET" });
           const data = await response.json();
           console.log(data);
+
+          setPhotos(data.map((place: any) => place.photoUrl));
         } catch (err) {
           console.error("Error during API call:", err);
         }
@@ -100,6 +102,30 @@ function GoogleMap() {
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
       <div className="h-[500px] w-[500px]">
         <Map zoom={9} center={finalPos}></Map>
+      </div>
+      <div className="w-full inline-flex flex-nowrap">
+        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+          {photos?.map((photo) => (
+            <Image
+              alt="photo"
+              key={photo}
+              src={photo}
+              width={400}
+              height={400}
+            />
+          ))}
+        </ul>
+        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+          {photos?.map((photo) => (
+            <Image
+              alt="photo"
+              key={photo}
+              src={photo}
+              width={400}
+              height={400}
+            />
+          ))}
+        </ul>
       </div>
     </APIProvider>
   );

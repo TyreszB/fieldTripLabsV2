@@ -27,6 +27,8 @@ export async function GET(req: NextRequest) {
 
     const data: any = await res.json();
 
+    // Need filter results to find the attractions and need to add error handling
+
     const results: Result[] = await Promise.all(
       data.results.map(async (place: Result) => {
         const getPhotoUrl = await fetch(

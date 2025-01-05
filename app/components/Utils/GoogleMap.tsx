@@ -77,13 +77,14 @@ function GoogleMap() {
 
   useEffect(() => {
     if (finalPos) {
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
       const typeQuery = types.join(",");
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${finalPos.lat},${finalPos.lng}&radius=500&type=${typeQuery}&key=${apiKey}`;
+      const url = `api/nearbySearch?lat=${finalPos.lat}&lng=${
+        finalPos.lng
+      }&type=${typeQuery}&radius=${500}`;
 
       const fetchData = async () => {
         try {
-          const response = await fetch(url);
+          const response = await fetch(url, { method: "GET" });
           const data = await response.json();
           console.log(data);
         } catch (err) {

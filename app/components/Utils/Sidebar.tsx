@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useMemo } from "react";
 import Image from "next/image";
 import Logo from "../../../public/Logo.png";
 import { useSession, signOut, signIn } from "next-auth/react";
@@ -7,16 +7,17 @@ import { redirect } from "next/navigation";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  ArrowRightOnRectangleIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import SidebarItem from "./SidebarItem";
 import capitalize from "../../Util/capitalize";
 
-export const SidebarContext = createContext();
+export const SidebarContext = createContext({ expanded: true });
 
 const Sidebar = () => {
   const { data } = useSession();
   const [expanded, setExpanded] = useState(true);
+  const contextValue = useMemo(() => ({ expanded }), [expanded]);
 
   if (!data) redirect("/api/auth/signin");
 
@@ -42,14 +43,13 @@ const Sidebar = () => {
             {expanded ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </button>
         </div>
-
         <ul className="flex-1 px-3">
-          <SidebarContext.Provider value={{ expanded }}>
+          <SidebarContext.Provider value={contextValue}>
             <SidebarItem />
           </SidebarContext.Provider>
         </ul>
         <div className="border-t flex p-3">
-          {data.user.image ? (
+          {data?.user?.image ? (
             <Image
               src={data.user.image}
               alt="Profile Image"
@@ -67,10 +67,10 @@ const Sidebar = () => {
           >
             <div className="leading-4">
               <h4 className="font-semibold">{`${capitalize(
-                data.user.name.split(" ")[0]
-              )}  ${capitalize(data.user.name.split(" ")[1])}`}</h4>
+                data?.user?.name?.split(" ")[0] ?? ""
+              )}  ${capitalize(data?.user?.name?.split(" ")[1] || "")}`}</h4>
               <span className="text-xs text-gray-600">
-                {capitalize(data.user.email)}
+                {capitalize(data?.user?.email ?? "")}
               </span>
             </div>
           </div>
@@ -79,7 +79,7 @@ const Sidebar = () => {
             className={expanded ? `w-8` : "hidden"}
             onClick={() => signOut()}
           >
-            <ArrowRightOnRectangleIcon />
+            <ArrowLeftOnRectangleIcon />
           </button>
         </div>
       </nav>

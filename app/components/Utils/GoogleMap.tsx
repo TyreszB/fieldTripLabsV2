@@ -8,42 +8,6 @@ interface GeoPosition {
   lng: number;
 }
 
-const types: string[] = [
-  "art_gallery",
-  "art_studio",
-  "amusement_park",
-  "aquarium",
-  "botanical_garden",
-  "cultural_landmark",
-  "historical_place",
-  "monument",
-  "museum",
-  "national_park",
-  "park",
-  "performing_arts_theater",
-  "sculpture",
-  "tourist_attraction",
-  "zoo",
-  "wildlife_park",
-  "wildlife_refuge",
-  "amphitheatre",
-  "adventure_sports_center",
-  "hiking_area",
-  "beach",
-  "cycling_park",
-  "roller_coaster",
-  "skateboard_park",
-  "state_park",
-  "ferris_wheel",
-  "plaza",
-  "planetarium",
-  "picnic_ground",
-  "event_venue",
-  "visitor_center",
-  "concert_hall",
-  "opera_house",
-];
-
 const getGeoPosition = (): Promise<GeoPosition> => {
   let userConfirmed: any = confirm(
     "Would you like to share your current location?"
@@ -77,10 +41,9 @@ function GoogleMap() {
 
   useEffect(() => {
     if (finalPos) {
-      const typeQuery = types.join(",");
       const url = `api/nearbySearch?lat=${finalPos.lat}&lng=${
         finalPos.lng
-      }&type=${typeQuery}&radius=${500}`;
+      }&radius=${50000}&type=tourist_attraction`;
 
       const fetchData = async () => {
         try {
@@ -103,7 +66,7 @@ function GoogleMap() {
       <div className="h-[500px] w-[500px]">
         <Map zoom={9} center={finalPos}></Map>
       </div>
-      <div className="w-full inline-flex flex-nowrap">
+      {/* <div className="w-full inline-flex flex-nowrap">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {photos?.map((photo) => (
             <Image
@@ -126,7 +89,7 @@ function GoogleMap() {
             />
           ))}
         </ul>
-      </div>
+      </div> */}
     </APIProvider>
   );
 }

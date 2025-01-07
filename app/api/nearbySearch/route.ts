@@ -5,32 +5,41 @@ interface Result {
   name: string;
   place_id: string;
   photos?: { photo_reference: string }[];
-  photo_reference: string;
+  photo_reference: string | null;
   geometry: { location: { lat: number; lng: number } };
   types: string[];
   photoUrl: string;
 }
+
+const types: string[] = ["museum", "park", "zoo", "tourist_attraction"];
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
 
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
-  const type = searchParams.get("type");
+
   const radius = searchParams.get("radius");
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
 
-  try {
+  const placeData = [];
+
+  for (const type of types) {
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
+    console.log(url);
+
     const res = await fetch(url);
-
     const data: any = await res.json();
 
+    placeData.push(...data.results);
+  }
+
+  try {
     // Need filter results to find the attractions and need to add error handling
 
     const results: Result[] = await Promise.all(
-      data.results.map(async (place: Result) => {
+      placeData.map(async (place: Result) => {
         const getPhotoUrl = await fetch(
           `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.photos?.[0]?.photo_reference}&key=${apiKey}`
         );
@@ -50,6 +59,8 @@ export async function GET(req: NextRequest) {
         };
       })
     );
+
+    // const filteredResults = results.filter((place) => place.photoUrl);
 
     return NextResponse.json(results);
   } catch (error) {

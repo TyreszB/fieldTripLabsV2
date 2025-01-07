@@ -66,7 +66,7 @@ function GoogleMap() {
       <div className="h-[500px] w-[500px]">
         <Map zoom={9} center={finalPos}></Map>
       </div>
-      {/* <div className="w-full inline-flex flex-nowrap">
+      <div className="w-full inline-flex flex-nowrap">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {photos?.map((photo) => (
             <Image
@@ -89,7 +89,7 @@ function GoogleMap() {
             />
           ))}
         </ul>
-      </div> */}
+      </div>
     </APIProvider>
   );
 }

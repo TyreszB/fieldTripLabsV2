@@ -36,8 +36,6 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Need filter results to find the attractions and need to add error handling
-
     const results: Result[] = await Promise.all(
       placeData.map(async (place: Result) => {
         const getPhotoUrl = await fetch(
@@ -60,9 +58,7 @@ export async function GET(req: NextRequest) {
       })
     );
 
-    // const filteredResults = results.filter((place) => place.photoUrl);
-
-    return NextResponse.json(results);
+    return NextResponse.json(results.splice(0, 20));
   } catch (error) {
     console.error("Error fetching data from Places API:", error);
     return;

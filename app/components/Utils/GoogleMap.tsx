@@ -1,6 +1,6 @@
 "use client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useEffect, useState } from "react";
 
 interface GeoPosition {
@@ -67,25 +67,25 @@ function GoogleMap() {
         <Map zoom={9} center={finalPos}></Map>
       </div>
       <div className="w-full inline-flex flex-nowrap">
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll  ">
           {photos?.map((photo) => (
             <Image
               alt="photo"
+              layout="fill"
               key={photo}
               src={photo}
-              width={400}
-              height={400}
+              className="rounded-md px-4 h-auto w-auto"
             />
           ))}
         </ul>
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll  ">
           {photos?.map((photo) => (
             <Image
               alt="photo"
+              layout="fill"
               key={photo}
               src={photo}
-              width={400}
-              height={400}
+              className="rounded-md px-4 h-auto w-auto"
             />
           ))}
         </ul>

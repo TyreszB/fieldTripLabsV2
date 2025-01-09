@@ -60,6 +60,7 @@ function GoogleMap() {
       fetchData();
     }
   }, [finalPos]);
+  // yep i did it again
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>

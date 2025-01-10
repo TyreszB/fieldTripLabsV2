@@ -27,7 +27,6 @@ export async function GET(req: NextRequest) {
 
   for (const type of types) {
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
-    console.log(url);
 
     const res = await fetch(url);
     const data: any = await res.json();

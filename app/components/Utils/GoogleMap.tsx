@@ -67,23 +67,25 @@ function GoogleMap() {
         <Map zoom={9} center={finalPos}></Map>
       </div>
       <div className="w-full inline-flex flex-nowrap">
-        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll w-[250px] h-[200px] ">
+        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll ">
           {photos?.map((photo) => (
             <Image
               alt="photo"
-              layout="fill"
-              key={photo}
+              height={15}
+              width={15}
+              key={`${photo} 1`}
               src={photo}
               className="rounded-md px-4 "
             />
           ))}
         </ul>
-        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll  w-[250px] h-[200px]">
+        <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll  ">
           {photos?.map((photo) => (
             <Image
               alt="photo"
-              layout="fill"
-              key={photo}
+              height={15}
+              width={15}
+              key={`${photo} 2`}
               src={photo}
               className="rounded-md px-4 "
             />

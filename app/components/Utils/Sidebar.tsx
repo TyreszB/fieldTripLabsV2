@@ -32,6 +32,7 @@ const Sidebar = () => {
           <Image
             src={Logo}
             alt="Logo"
+            priority={true}
             className={`overflow-hidden transition-all  ${
               expanded ? "pl-4 w-[100px]" : "w-0"
             }`}

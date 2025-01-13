@@ -57,7 +57,7 @@ export async function GET(req: NextRequest) {
       })
     );
 
-    return NextResponse.json(results.splice(0, 20));
+    return NextResponse.json(results.splice(0, 16));
   } catch (error) {
     console.error("Error fetching data from Places API:", error);
     return;

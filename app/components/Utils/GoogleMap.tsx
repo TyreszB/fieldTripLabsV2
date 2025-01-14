@@ -61,14 +61,12 @@ function GoogleMap() {
     }
   }, [finalPos]);
 
-  // I have a interview tomorow
-
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-      <div className="relative h-[500px] w-[650px] rounded-md overflow-hidden">
+      <div className="relative h-[00px] w-[800px] rounded-xl overflow-hidden m-[200px]">
         {finalPos ? (
           <Map
-            zoom={9}
+            zoom={10}
             center={finalPos || { lat: 35.652832, lng: 139.839478 }}
             colorScheme="FOLLOW_SYSTEM"
           ></Map>

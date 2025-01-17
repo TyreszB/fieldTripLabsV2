@@ -75,8 +75,6 @@ function GoogleMap() {
               zoom={10}
               defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
               colorScheme="FOLLOW_SYSTEM"
-              reuseMaps={true}
-              controlled={false}
             ></Map>
           </MapControl>
         ) : (

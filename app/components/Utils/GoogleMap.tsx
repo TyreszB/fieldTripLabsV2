@@ -1,10 +1,5 @@
 "use client";
-import {
-  APIProvider,
-  ControlPosition,
-  Map,
-  MapControl,
-} from "@vis.gl/react-google-maps";
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
 import React, { useEffect, useState } from "react";
 
@@ -68,47 +63,47 @@ function GoogleMap() {
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-      <div className="relative h-[550px] w-[650px] rounded-xl overflow-hidden m-[200px]">
-        {finalPos ? (
-          <MapControl position={ControlPosition.TOP_CENTER}>
+      <div className="flex justify-center w-max">
+        <div className="relative h-[550px] w-[650px] rounded-xl overflow-hidden mx-[250px]">
+          {finalPos ? (
             <Map
-              zoom={19}
+              zoom={10}
               defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
             ></Map>
-          </MapControl>
-        ) : (
-          <div> Map Loading...</div>
-        )}
-        <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
-          <div className="overflow-hidden w-full inline-flex flex-nowrap ">
-            <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
-              {photos?.map((photo) => (
-                <li key={`${photo} 1`} className="h-[100px] w-[180px]">
-                  <Image
-                    alt="photo"
-                    height={100}
-                    width={180}
-                    src={photo}
-                    className="rounded-md px-2"
-                    priority={true}
-                  />
-                </li>
-              ))}
-            </ul>
-            <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
-              {photos?.map((photo) => (
-                <li key={`${photo} 2`} className="h-[100px] w-[180px]">
-                  <Image
-                    alt="photo"
-                    height={100}
-                    width={180}
-                    src={photo}
-                    className="rounded-md px-2 "
-                    priority={true}
-                  />
-                </li>
-              ))}
-            </ul>
+          ) : (
+            <div> Map Loading...</div>
+          )}
+          <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
+            <div className="overflow-hidden w-full inline-flex flex-nowrap ">
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 1`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2"
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 2`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2 "
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

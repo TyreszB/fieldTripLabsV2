@@ -62,9 +62,9 @@ function GoogleMap() {
   }, [finalPos]);
 
   return (
-    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-      <div className="flex justify-center w-max">
-        <div className="relative h-[550px] w-[650px] rounded-xl overflow-hidden mx-[250px]">
+    <div className="flex justify-center">
+      <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
+        <div className="relative flex justify-center h-[550px] w-[600px] rounded-xl overflow-hidden ">
           {finalPos ? (
             <Map
               zoom={10}
@@ -106,8 +106,8 @@ function GoogleMap() {
             </div>
           </div>
         </div>
-      </div>
-    </APIProvider>
+      </APIProvider>
+    </div>
   );
 }
 

@@ -21,11 +21,11 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex flex-1 justify-around">
-        <div className="p-5 ">Welcome {capitalize(firstName)},</div>
+      <div className="flex justify-around">
+        <div className="py-5 ">Welcome {capitalize(firstName)}</div>
       </div>
       <div>Search your dream destination ...</div>
-      <div>
+      <div className="w-screen">
         <PlacesAutocomplete />
         <GoogleMap />
       </div>

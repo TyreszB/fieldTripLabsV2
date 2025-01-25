@@ -22,17 +22,15 @@ export default async function RootLayout({
   const session = await getServerSession();
 
   return (
-    <>
-      <html lang="en">
-        <body className={inter.className}>
-          <SessionProvider session={session}>
-            <div className="flex">
-              <Sidebar />
-              {children}
-            </div>
-          </SessionProvider>
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className={inter.className}>
+        <SessionProvider session={session}>
+          <div className="flex">
+            <Sidebar />
+            {children}
+          </div>
+        </SessionProvider>
+      </body>
+    </html>
   );
 }

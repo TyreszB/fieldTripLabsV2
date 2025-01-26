@@ -62,7 +62,7 @@ function GoogleMap() {
   }, [finalPos]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
         <div className="relative flex justify-center h-[550px] w-[600px] rounded-xl overflow-hidden ">
           {finalPos ? (

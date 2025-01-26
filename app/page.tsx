@@ -20,12 +20,14 @@ export default function Home() {
   const firstName = data.user?.name?.split(" ")[0] ?? "Guest";
 
   return (
-    <main>
+    <main className="w-screen">
       <div className="flex justify-around">
         <div className="py-5 ">Welcome {capitalize(firstName)}</div>
       </div>
-      <div>Search your dream destination ...</div>
-      <div className="w-screen">
+      <div className="flex justify-around">
+        Search your dream destination ...
+      </div>
+      <div className="w-auto">
         <PlacesAutocomplete />
         <GoogleMap />
       </div>

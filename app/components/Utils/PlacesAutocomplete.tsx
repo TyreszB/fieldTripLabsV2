@@ -36,6 +36,7 @@ const PlacesAutocomplete = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter your address"
+        className="text-[30px]"
       />
     </Autocomplete>
   );

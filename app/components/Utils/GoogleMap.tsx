@@ -2,6 +2,7 @@
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
 import React, { useEffect, useState } from "react";
+import Logo from "../../../public/Logo.png";
 
 interface GeoPosition {
   lat: number;
@@ -64,14 +65,23 @@ function GoogleMap() {
   return (
     <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <div className="relative flex justify-center h-[550px] w-[600px] rounded-xl overflow-hidden ">
+        <div className="relative flex justify-center h-[550px] w-[600px] rounded-xl ">
           {finalPos ? (
             <Map
               zoom={10}
               defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
             ></Map>
           ) : (
-            <div> Map Loading...</div>
+            <div className="h-screen">
+              <Image
+                src={Logo}
+                width={300}
+                height={350}
+                className="animate-spin"
+                alt="Logo"
+                priority
+              />
+            </div>
           )}
           <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
             <div className="overflow-hidden w-full inline-flex flex-nowrap ">

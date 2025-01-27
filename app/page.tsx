@@ -22,13 +22,12 @@ export default function Home() {
   return (
     <main className="w-screen">
       <div className="flex justify-around">
-        <div className="py-5 ">Welcome {capitalize(firstName)}</div>
-      </div>
-      <div className="flex justify-around">
-        Search your dream destination ...
+        <div className="py-5 text-[50px]">Welcome {capitalize(firstName)}</div>
       </div>
       <div className="w-auto">
-        <PlacesAutocomplete />
+        <div className="flex justify-around">
+          <PlacesAutocomplete />
+        </div>
         <GoogleMap />
       </div>
     </main>

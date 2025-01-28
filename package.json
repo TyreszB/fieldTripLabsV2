@@ -12,6 +12,7 @@
     "db:migrate:make": "TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' knex migrate:make"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.0.1",
     "@react-google-maps/api": "^2.20.3",

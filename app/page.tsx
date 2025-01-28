@@ -13,11 +13,7 @@ interface SessionData {
 export default function Home() {
   const { data } = useSession();
 
-  if (!data?.user) {
-    return <div>Loading...</div>;
-  }
-
-  const firstName = data.user?.name?.split(" ")[0] ?? "Guest";
+  const firstName = data?.user?.name?.split(" ")[0] ?? "Guest";
 
   return (
     <main className="w-screen">

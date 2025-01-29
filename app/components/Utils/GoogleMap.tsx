@@ -65,7 +65,7 @@ function GoogleMap() {
 
   if (!finalPos) {
     return (
-      <div className="flex justify-center items-center pt-[100px]">
+      <div className="flex justify-center items-center mt-9">
         <Image
           src={Logo}
           className=" animate-pulse"
@@ -79,8 +79,8 @@ function GoogleMap() {
   return (
     <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <Transition show={true}>
-          <div className="relative flex justify-center h-[550px] w-[600px] mt-9 transition duration-300 ease-in ">
+        <Transition show={true} appear={true}>
+          <div className="relative flex justify-center h-[550px] w-[600px] mt-9">
             <Map
               zoom={10}
               defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}

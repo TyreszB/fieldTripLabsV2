@@ -24,7 +24,7 @@ const PlacesAutocomplete = () => {
     }
   };
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return;
 
   return (
     <Autocomplete
@@ -35,8 +35,8 @@ const PlacesAutocomplete = () => {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Enter your address"
-        className="text-[30px]"
+        placeholder="Search Your Dream..."
+        className="text-[30px] text-center border-spacing-4"
       />
     </Autocomplete>
   );

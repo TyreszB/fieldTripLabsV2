@@ -79,47 +79,45 @@ function GoogleMap() {
   return (
     <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <Transition show={true} appear={true}>
-          <div className="relative flex justify-center h-[550px] w-[600px] mt-9">
-            <Map
-              zoom={10}
-              defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
-            ></Map>
+        <div className="relative flex justify-center h-[550px] w-[600px] mt-9">
+          <Map
+            zoom={10}
+            defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
+          ></Map>
 
-            <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
-              <div className="overflow-hidden w-full inline-flex flex-nowrap ">
-                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
-                  {photos?.map((photo) => (
-                    <li key={`${photo} 1`} className="h-[100px] w-[180px]">
-                      <Image
-                        alt="photo"
-                        height={100}
-                        width={180}
-                        src={photo}
-                        className="rounded-md px-2"
-                        priority={true}
-                      />
-                    </li>
-                  ))}
-                </ul>
-                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
-                  {photos?.map((photo) => (
-                    <li key={`${photo} 2`} className="h-[100px] w-[180px]">
-                      <Image
-                        alt="photo"
-                        height={100}
-                        width={180}
-                        src={photo}
-                        className="rounded-md px-2 "
-                        priority={true}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
+            <div className="overflow-hidden w-full inline-flex flex-nowrap ">
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 1`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2"
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 2`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2 "
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </Transition>
+        </div>
       </APIProvider>
     </div>
   );

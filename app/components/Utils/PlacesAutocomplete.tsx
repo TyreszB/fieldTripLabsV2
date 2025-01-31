@@ -36,7 +36,7 @@ const PlacesAutocomplete = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search Your Dream..."
-        className="text-[30px] text-center border-spacing-4"
+        className="text-[30px] text-center "
       />
     </Autocomplete>
   );

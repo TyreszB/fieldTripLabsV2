@@ -11,17 +11,17 @@ interface SessionData {
 }
 
 export default function Home() {
-  const { data } = useSession();
+  // const { data } = useSession();
 
-  const firstName = data?.user?.name?.split(" ")[0] ?? "Guest";
+  // const firstName = data?.user?.name?.split(" ")[0] ?? "Guest";
 
   return (
-    <main className="w-screen">
+    <main className="w-screen bg-sky-50">
       <div className="flex justify-around">
-        <div className="py-5 text-[50px]">Welcome {capitalize(firstName)}</div>
+        {/* <div className="py-5 text-[50px]">Welcome {capitalize(firstName)}</div> */}
       </div>
       <div className="w-auto">
-        <div className="flex justify-around">
+        <div className="flex justify-around mt-[50px]">
           <PlacesAutocomplete />
         </div>
         <GoogleMap />

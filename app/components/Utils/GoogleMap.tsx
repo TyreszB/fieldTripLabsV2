@@ -51,7 +51,6 @@ function GoogleMap() {
         try {
           const response = await fetch(url, { method: "GET" });
           const data = await response.json();
-          console.log(data);
 
           setPhotos(data.map((place: any) => place.photoUrl));
         } catch (err) {
@@ -79,7 +78,7 @@ function GoogleMap() {
   return (
     <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <div className="relative flex justify-center h-[550px] w-[600px] mt-9 rounded-2xl">
+        <div className="relative flex justify-center h-[550px] w-[600px] mt-[70px] ">
           <Map
             zoom={10}
             defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
@@ -87,7 +86,7 @@ function GoogleMap() {
 
           <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
             <div className="overflow-hidden w-full inline-flex flex-nowrap ">
-              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
                 {photos?.map((photo) => (
                   <li key={`${photo} 1`} className="h-[100px] w-[180px]">
                     <Image
@@ -101,7 +100,7 @@ function GoogleMap() {
                   </li>
                 ))}
               </ul>
-              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2 ">
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
                 {photos?.map((photo) => (
                   <li key={`${photo} 2`} className="h-[100px] w-[180px]">
                     <Image

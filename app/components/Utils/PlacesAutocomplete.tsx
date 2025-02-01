@@ -21,6 +21,7 @@ const PlacesAutocomplete = () => {
       const place = autocompleteRef.current.getPlace();
 
       console.log(place);
+      // after you seach the map should update to the new place
     }
   };
 
@@ -36,7 +37,7 @@ const PlacesAutocomplete = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search Your Dream Vacation..."
-        className="text-[30px] text-center border border-sky-200 rounded-2xl shadow-xl w-[500px]"
+        className="text-[30px] text-center border border-sky-200 rounded-3xl shadow-xl w-[500px]"
       />
     </Autocomplete>
   );

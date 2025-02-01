@@ -79,7 +79,7 @@ function GoogleMap() {
   return (
     <div className="flex justify-around">
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <div className="relative flex justify-center h-[550px] w-[600px] mt-9">
+        <div className="relative flex justify-center h-[550px] w-[600px] mt-9 rounded-2xl">
           <Map
             zoom={10}
             defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}

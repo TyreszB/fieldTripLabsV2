@@ -1,14 +1,17 @@
 "use client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Logo from "../../../public/Logo.png";
-import { Transition } from "@headlessui/react";
+import { Autocomplete } from "@react-google-maps/api";
 
 interface GeoPosition {
   lat: number;
   lng: number;
 }
+type Library = "places";
+
+const libraries: Library[] = ["places"];
 
 const getGeoPosition = (): Promise<GeoPosition> => {
   let userConfirmed: any = confirm(
@@ -36,6 +39,8 @@ const getGeoPosition = (): Promise<GeoPosition> => {
 function GoogleMap() {
   const [finalPos, setFinalPos] = useState<GeoPosition | null>(null);
   const [photos, setPhotos] = useState<string[] | null>(null);
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));
@@ -64,7 +69,7 @@ function GoogleMap() {
 
   if (!finalPos) {
     return (
-      <div className="flex justify-center items-center mt-9">
+      <div className="flex justify-center items-center h-screen">
         <Image
           src={Logo}
           className=" animate-pulse"
@@ -75,50 +80,75 @@ function GoogleMap() {
     );
   }
 
-  return (
-    <div className="flex justify-around">
-      <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
-        <div className="relative flex justify-center h-[550px] w-[600px] mt-[70px] ">
-          <Map
-            zoom={10}
-            defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
-          ></Map>
+  const onPlaceChanged = () => {
+    if (autocompleteRef.current) {
+      const place = autocompleteRef.current.getPlace();
 
-          <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
-            <div className="overflow-hidden w-full inline-flex flex-nowrap ">
-              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
-                {photos?.map((photo) => (
-                  <li key={`${photo} 1`} className="h-[100px] w-[180px]">
-                    <Image
-                      alt="photo"
-                      height={100}
-                      width={180}
-                      src={photo}
-                      className="rounded-md px-2"
-                      priority={true}
-                    />
-                  </li>
-                ))}
-              </ul>
-              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
-                {photos?.map((photo) => (
-                  <li key={`${photo} 2`} className="h-[100px] w-[180px]">
-                    <Image
-                      alt="photo"
-                      height={100}
-                      width={180}
-                      src={photo}
-                      className="rounded-md px-2 "
-                      priority={true}
-                    />
-                  </li>
-                ))}
-              </ul>
+      console.log(place);
+      // after you seach the map should update to the new place
+    }
+  };
+
+  return (
+    <>
+      <Autocomplete
+        onLoad={(ref) => (autocompleteRef.current = ref)}
+        onPlaceChanged={onPlaceChanged}
+      >
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search Your Dream Vacation..."
+          className="text-[30px] text-center border border-sky-200 rounded-3xl shadow-xl w-[500px]"
+        />
+      </Autocomplete>
+      <div className="flex justify-around">
+        <APIProvider
+          apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}
+        >
+          <div className="relative flex justify-center h-[60vh] w-[60vw] mt-[70px] ">
+            <Map
+              zoom={10}
+              defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
+            ></Map>
+
+            <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
+              <div className="overflow-hidden w-full inline-flex flex-nowrap ">
+                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
+                  {photos?.map((photo) => (
+                    <li key={`${photo} 1`} className="h-[100px] w-[180px]">
+                      <Image
+                        alt="photo"
+                        height={100}
+                        width={180}
+                        src={photo}
+                        className="rounded-md px-2"
+                        priority={true}
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-2">
+                  {photos?.map((photo) => (
+                    <li key={`${photo} 2`} className="h-[100px] w-[180px]">
+                      <Image
+                        alt="photo"
+                        height={100}
+                        width={180}
+                        src={photo}
+                        className="rounded-md px-2 "
+                        priority={true}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </APIProvider>
-    </div>
+        </APIProvider>
+      </div>
+    </>
   );
 }
 

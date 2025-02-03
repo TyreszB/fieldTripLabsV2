@@ -95,12 +95,12 @@ function GoogleMap() {
   }
 
   return (
-    <>
+    <div className="relative flex justify-center items-center">
       <Autocomplete
         onLoad={(ref) => (autocompleteRef.current = ref)}
         onPlaceChanged={onPlaceChanged}
       >
-        <div className="flex justify-around absolute mt-[100px] w-max">
+        <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-50 flex justify-center w-full px-4">
           <input
             type="text"
             value={value}
@@ -110,53 +110,49 @@ function GoogleMap() {
           />
         </div>
       </Autocomplete>
-      <div className="flex justify-around">
-        <APIProvider
-          apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}
-        >
-          <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
-            <Map
-              zoom={10}
-              defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
-              disableDefaultUI
-            ></Map>
+      <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
+        <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
+          <Map
+            zoom={10}
+            defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
+            disableDefaultUI
+          ></Map>
 
-            <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
-              <div className="overflow-hidden w-full inline-flex flex-nowrap ">
-                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-5">
-                  {photos?.map((photo) => (
-                    <li key={`${photo} 1`} className="h-[100px] w-[180px]">
-                      <Image
-                        alt="photo"
-                        height={100}
-                        width={180}
-                        src={photo}
-                        className="rounded-md px-2"
-                        priority={true}
-                      />
-                    </li>
-                  ))}
-                </ul>
-                <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-5">
-                  {photos?.map((photo) => (
-                    <li key={`${photo} 2`} className="h-[100px] w-[180px]">
-                      <Image
-                        alt="photo"
-                        height={100}
-                        width={180}
-                        src={photo}
-                        className="rounded-md px-2 "
-                        priority={true}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
+            <div className="overflow-hidden w-full inline-flex flex-nowrap ">
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-5">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 1`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2"
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <ul className="relative flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll pb-5">
+                {photos?.map((photo) => (
+                  <li key={`${photo} 2`} className="h-[100px] w-[180px]">
+                    <Image
+                      alt="photo"
+                      height={100}
+                      width={180}
+                      src={photo}
+                      className="rounded-md px-2 "
+                      priority={true}
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </APIProvider>
-      </div>
-    </>
+        </div>
+      </APIProvider>
+    </div>
   );
 }
 

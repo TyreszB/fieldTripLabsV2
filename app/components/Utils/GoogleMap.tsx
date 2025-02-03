@@ -100,7 +100,7 @@ function GoogleMap() {
         onLoad={(ref) => (autocompleteRef.current = ref)}
         onPlaceChanged={onPlaceChanged}
       >
-        <div className="flex justtify-around absolute mt-[100px] w-screen">
+        <div className="flex justify-around absolute mt-[100px] w-max">
           <input
             type="text"
             value={value}
@@ -114,7 +114,7 @@ function GoogleMap() {
         <APIProvider
           apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}
         >
-          <div className="relative flex justify-center h-[90vh] w-[60vw] mt-[50px]">
+          <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
             <Map
               zoom={10}
               defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}

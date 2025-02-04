@@ -71,8 +71,14 @@ function GoogleMap() {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
 
-      console.log(place);
-      // after you seach the map should update to the new place
+      const geoLoc: GeoPosition = {
+        lat: place.geometry?.location?.lat() ?? 0,
+        lng: place.geometry?.location?.lng() ?? 0,
+      };
+
+      setFinalPos(geoLoc);
+
+      setValue(place.formatted_address ?? "");
     }
   };
 
@@ -107,13 +113,15 @@ function GoogleMap() {
             onChange={(e) => setValue(e.target.value)}
             placeholder="Search Your Dream Vacation..."
             className="text-[30px] text-center border border-sky-200 rounded-3xl shadow-xl w-[500px] z-50"
+            onClick={() => setValue("")}
           />
         </div>
       </Autocomplete>
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
         <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
           <Map
-            zoom={10}
+            zoom={12}
+            center={finalPos}
             defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
           ></Map>
@@ -127,9 +135,12 @@ function GoogleMap() {
                       alt="photo"
                       height={100}
                       width={180}
-                      src={photo}
+                      src={photo || Logo}
                       className="rounded-md px-2"
                       priority={true}
+                      onError={(e) => {
+                        e.currentTarget.src = Logo.src;
+                      }}
                     />
                   </li>
                 ))}
@@ -144,6 +155,9 @@ function GoogleMap() {
                       src={photo}
                       className="rounded-md px-2 "
                       priority={true}
+                      onError={(e) => {
+                        e.currentTarget.src = Logo.src;
+                      }}
                     />
                   </li>
                 ))}

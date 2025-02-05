@@ -57,7 +57,9 @@ function GoogleMap() {
           const response = await fetch(url, { method: "GET" });
           const data = await response.json();
 
-          setPhotos(data.map((place: any) => place.photoUrl));
+          setPhotos(
+            data.map((place: any) => (place.photoUrl ? place.photoUrl : null))
+          );
         } catch (err) {
           console.error("Error during API call:", err);
         }
@@ -67,7 +69,7 @@ function GoogleMap() {
     }
   }, [finalPos]);
 
-  const onPlaceChanged = () => {
+  const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
 

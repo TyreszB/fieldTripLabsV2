@@ -58,6 +58,7 @@ function GoogleMap() {
           const data = await response.json();
 
           setPhotos(
+            // figure out if this works
             data.map((place: any) => (place.photoUrl ? place.photoUrl : null))
           );
         } catch (err) {

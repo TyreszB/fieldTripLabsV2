@@ -1,5 +1,5 @@
 "use client";
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
 import React, { useEffect, useState, useRef } from "react";
 import Logo from "../../../public/Logo.png";
@@ -58,7 +58,6 @@ function GoogleMap() {
           const data = await response.json();
 
           setPhotos(
-            // figure out if this works
             data.map((place: any) => (place.photoUrl ? place.photoUrl : null))
           );
         } catch (err) {
@@ -123,7 +122,7 @@ function GoogleMap() {
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
         <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
           <Map
-            zoom={12}
+            zoom={11}
             center={finalPos}
             defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI

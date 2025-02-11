@@ -9,6 +9,17 @@ interface GeoPosition {
   lat: number;
   lng: number;
 }
+
+interface Result {
+  name: string;
+  place_id: string;
+  photos?: { photo_reference: string }[];
+  photo_reference: string | null;
+  geometry: { location: { lat: number; lng: number } };
+  types: string[];
+  photoUrl: string;
+}
+
 type Library = "places";
 
 const libraries: Library[] = ["places"];
@@ -41,6 +52,7 @@ function GoogleMap() {
   const [photos, setPhotos] = useState<string[] | null>(null);
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
   const [value, setValue] = useState<string>("");
+  const [data, setData] = useState<Result[] | null>(null);
 
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));
@@ -56,6 +68,8 @@ function GoogleMap() {
         try {
           const response = await fetch(url, { method: "GET" });
           const data = await response.json();
+
+          setData(data);
 
           setPhotos(
             data.map((place: any) => (place.photoUrl ? place.photoUrl : null))
@@ -126,7 +140,18 @@ function GoogleMap() {
             center={finalPos}
             defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
-          ></Map>
+          >
+            {data?.map((place: Result) => (
+              <AdvancedMarker
+                key={place.place_id}
+                position={{
+                  lat: place.geometry?.location?.lat ?? 0,
+                  lng: place.geometry?.location?.lng ?? 0,
+                }}
+                title={place.name}
+              />
+            ))}
+          </Map>
 
           <div className="absolute top-0 left-0 w-full h-full flex items-end pointer-events-none">
             <div className="overflow-hidden w-full inline-flex flex-nowrap ">

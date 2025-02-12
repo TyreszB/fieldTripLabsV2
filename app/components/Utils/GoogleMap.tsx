@@ -1,5 +1,10 @@
 "use client";
-import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Marker,
+} from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
 import React, { useEffect, useState, useRef } from "react";
 import Logo from "../../../public/Logo.png";
@@ -142,7 +147,7 @@ function GoogleMap() {
             disableDefaultUI
           >
             {data?.map((place: Result) => (
-              <AdvancedMarker
+              <Marker
                 key={place.place_id}
                 position={{
                   lat: place.geometry?.location?.lat ?? 0,

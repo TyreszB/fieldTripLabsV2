@@ -6,7 +6,7 @@ import {
   Marker,
 } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import Logo from "../../../public/Logo.png";
 import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 
@@ -58,6 +58,7 @@ function GoogleMap() {
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<Result[] | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));
@@ -74,6 +75,8 @@ function GoogleMap() {
           const response = await fetch(url, { method: "GET" });
           const data = await response.json();
 
+          if (data) setData(null);
+
           setData(data);
 
           setPhotos(
@@ -87,6 +90,10 @@ function GoogleMap() {
       fetchData();
     }
   }, [finalPos]);
+
+  const handleMapload = (event: google.maps.MapMouseEvent) => {
+    mapRef.current = event.map;
+  };
 
   const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
@@ -102,6 +109,8 @@ function GoogleMap() {
       setValue(place.formatted_address ?? "");
     }
   };
+
+  const memoizedCenter = useMemo(() => finalPos, [finalPos]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? "",
@@ -141,10 +150,10 @@ function GoogleMap() {
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? ""}>
         <div className="relative flex justify-center h-[80vh] w-[60vw] mt-[50px]">
           <Map
-            zoom={11}
-            center={finalPos}
-            defaultCenter={finalPos || { lat: 35.652832, lng: 139.839478 }}
+            zoom={10}
+            center={memoizedCenter || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
+            on
           >
             {data?.map((place: Result) => (
               <Marker

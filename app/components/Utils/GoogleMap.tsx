@@ -153,7 +153,7 @@ function GoogleMap() {
             zoom={10}
             center={memoizedCenter || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
-            on
+            gestureHandling={"cooperative"}
           >
             {data?.map((place: Result) => (
               <Marker

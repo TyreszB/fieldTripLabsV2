@@ -91,10 +91,21 @@ function GoogleMap() {
     }
   }, [finalPos]);
 
-  const handleMapload = (event: google.maps.MapMouseEvent) => {
-    mapRef.current = event.map;
+  const handleMapload = (map: google.maps.Map) => {
+    mapRef.current = map;
   };
-
+  const handleDragEnd = () => {
+    if (mapRef.current) {
+      const center = mapRef.current.getCenter();
+      if (center) {
+        const newGeoPosition: GeoPosition = {
+          lat: center.lat(),
+          lng: center.lng(),
+        };
+        setFinalPos(newGeoPosition);
+      }
+    }
+  };
   const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
@@ -153,7 +164,7 @@ function GoogleMap() {
             zoom={10}
             center={memoizedCenter || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
-            gestureHandling={"cooperative"}
+            onDragend={handleDragEnd}
           >
             {data?.map((place: Result) => (
               <Marker

@@ -9,9 +9,12 @@ const Input = ({
   type: string;
 }) => {
   return (
-    <div className="flex flex-col justify-center py-3">
+    <div className="flex flex-col justify-center p-3">
       <label>{children}</label>
-      <input type={type} className="border-sky-900 border-2 rounded-xl my-3" />
+      <input
+        type={type}
+        className="border-sky-900 border-2 rounded-xl my-3 text-center"
+      />
     </div>
   );
 };

@@ -1,10 +1,5 @@
 "use client";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Marker,
-} from "@vis.gl/react-google-maps";
+import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 import Image from "next/legacy/image";
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import Logo from "../../../public/Logo.png";
@@ -91,21 +86,24 @@ function GoogleMap() {
     }
   }, [finalPos]);
 
-  const handleMapload = (map: google.maps.Map) => {
-    mapRef.current = map;
-  };
-  const handleDragEnd = () => {
-    if (mapRef.current) {
-      const center = mapRef.current.getCenter();
-      if (center) {
-        const newGeoPosition: GeoPosition = {
-          lat: center.lat(),
-          lng: center.lng(),
-        };
-        setFinalPos(newGeoPosition);
-      }
-    }
-  };
+  // Thinking about making the map draggable
+
+  // const handleMapload = (map: google.maps.Map) => {
+  //   mapRef.current = map;
+  // };
+  // const handleDragEnd = () => {
+  //   if (mapRef.current) {
+  //     const center = mapRef.current.getCenter();
+  //     if (center) {
+  //       const newGeoPosition: GeoPosition = {
+  //         lat: center.lat(),
+  //         lng: center.lng(),
+  //       };
+  //       setFinalPos(newGeoPosition);
+  //     }
+  //   }
+  // };
+
   const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
@@ -128,7 +126,7 @@ function GoogleMap() {
     libraries,
   });
 
-  if (!finalPos || !isLoaded) {
+  if (!memoizedCenter || !isLoaded) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Image
@@ -164,6 +162,7 @@ function GoogleMap() {
             zoom={10}
             center={memoizedCenter || { lat: 35.652832, lng: 139.839478 }}
             disableDefaultUI
+            gestureHandling="cooprative"
           >
             {data?.map((place: Result) => (
               <Marker

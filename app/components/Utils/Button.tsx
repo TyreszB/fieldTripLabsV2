@@ -8,7 +8,14 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
-  return <button onClick={onClick}>{children}</button>;
+  return (
+    <button
+      className=" bg-sky-600 rounded-md text-white px-2"
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default Button;

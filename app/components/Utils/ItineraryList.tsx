@@ -16,6 +16,7 @@ const ItineraryList = () => {
   return (
     <div className=" flex justify-center shadow-xl rounded-lg w-[500px] h-[700px] m-10">
       <div>What To Bring....</div>
+      {/* thinking about making a input feild to append to the list */}
       <ul>
         {list.map((item) => (
           <li key={item.name}> {item.name}</li>

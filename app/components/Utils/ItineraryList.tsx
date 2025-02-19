@@ -24,10 +24,14 @@ const ItineraryList = () => {
         }}
       >
         <input
-          type="submit"
+          type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Enter Item"
         />
+        <button type="submit" style={{ display: "none" }}>
+          Submit
+        </button>
       </form>
 
       <ul>

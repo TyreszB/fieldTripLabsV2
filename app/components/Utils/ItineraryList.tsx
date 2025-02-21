@@ -30,9 +30,7 @@ const ItineraryList = () => {
           placeholder="Enter Item"
           className="rounded-xl border-2"
         />
-        <button type="submit" style={{ display: "none" }}>
-          Submit
-        </button>
+        <button type="submit" style={{ display: "none" }}></button>
       </form>
 
       <ul>

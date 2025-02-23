@@ -21,6 +21,7 @@ const ItineraryList = () => {
         onSubmit={(e) => {
           e.preventDefault();
           handleAddItem();
+          setInputValue("");
         }}
       >
         <input
@@ -28,7 +29,7 @@ const ItineraryList = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter Item"
-          className="rounded-xl border-2"
+          className="rounded-xl border-2 pl-2"
         />
         <button type="submit" style={{ display: "none" }}></button>
       </form>

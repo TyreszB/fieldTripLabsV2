@@ -9,7 +9,7 @@ const Input = ({
   type: string;
 }) => {
   return (
-    <div className="flex flex-col justify-center p-3">
+    <div className="flex flex-col p-5">
       <label>{children}</label>
       <input
         type={type}

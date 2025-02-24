@@ -15,8 +15,8 @@ const ItineraryList = () => {
   };
 
   return (
-    <div className=" flex justify-center shadow-xl rounded-lg w-[500px] h-[700px] m-10">
-      <div>What To Bring....</div>
+    <div className=" flex flex-col items-center shadow-xl rounded-lg w-[500px] h-[700px] m-10">
+      <div className="py-3">What To Bring....</div>
       <form
         onSubmit={(e) => {
           e.preventDefault();

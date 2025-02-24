@@ -39,9 +39,6 @@ const ItineraryList = () => {
           <li key={item.name}> {item.name}</li>
         ))}
       </ul>
-      <div className="flex justify-end items-end mb-2">
-        <Button onClick={handleAddItem}>+</Button>
-      </div>
     </div>
   );
 };

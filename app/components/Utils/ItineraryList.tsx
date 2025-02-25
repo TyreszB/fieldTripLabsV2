@@ -40,10 +40,10 @@ const ItineraryList = () => {
         <button type="submit" style={{ display: "none" }}></button>
       </form>
 
-      <ul>
+      <ul className="flex flex-wrap justify-center mt-4">
         {list.map((item) => (
           <li
-            className="flex bg-sky-700 text-white rounded-2xl px-2 py-1 text-center my-3"
+            className="flex bg-sky-700 text-white rounded-2xl px-2 py-1 text-center my-3 mx-2"
             key={item.name}
           >
             {capitalize(item.name)}

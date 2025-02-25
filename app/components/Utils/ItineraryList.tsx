@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Button from "./Button";
+import { Cancel } from "@mui/icons-material";
+import capitalize from "@/app/Util/capitalize";
 
 const ItineraryList = () => {
   interface Item {
@@ -12,6 +14,10 @@ const ItineraryList = () => {
 
   const handleAddItem = () => {
     setList([...list, { name: inputValue }]);
+  };
+
+  const handleDeleteItem = (item: Item) => {
+    setList(list.filter((listItem) => item != listItem));
   };
 
   return (
@@ -36,7 +42,15 @@ const ItineraryList = () => {
 
       <ul>
         {list.map((item) => (
-          <li key={item.name}> {item.name}</li>
+          <li
+            className="flex bg-sky-700 text-white rounded-2xl px-2 py-1 text-center my-3"
+            key={item.name}
+          >
+            {capitalize(item.name)}
+            <button className=" ml-2" onClick={() => handleDeleteItem(item)}>
+              <Cancel />
+            </button>
+          </li>
         ))}
       </ul>
     </div>

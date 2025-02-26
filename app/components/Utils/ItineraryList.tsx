@@ -21,7 +21,7 @@ const ItineraryList = () => {
   };
 
   return (
-    <div className=" flex flex-col items-center shadow-xl rounded-lg w-[500px] h-[700px] m-10">
+    <div className=" flex flex-col items-center shadow-xl rounded-lg w-[500px] h-[700px] m-10 bg-white">
       <div className="py-3">What To Bring....</div>
       <form
         onSubmit={(e) => {

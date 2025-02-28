@@ -1,8 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Input from "../components/Utils/Input";
 import ItineraryList from "../components/Utils/ItineraryList";
 import { Autocomplete, useLoadScript } from "@react-google-maps/api";
-import { useState } from "react";
+
 type Library = "places";
 
 const libraries: Library[] = ["places"];
@@ -16,23 +17,23 @@ const Page = () => {
   });
 
   return (
-    <div className="relative flex justify-center w-screen bg-sky-50">
-      <div className="flex flex-grow justify-center">
-        <Input type="text">Itinerary Name</Input>
-        <Input type="date">Date</Input>
+    <div className="relative flex justify-around w-screen bg-sky-50">
+      <div className="relative flex flex-col ">
+        <div className="flex justify-center mt-10">
+          <Input type="text">Itinerary Name</Input>
+          <Input type="date">Date</Input>
+        </div>
         <div>
           {isLoaded && (
             <Autocomplete>
-              <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-50 flex justify-center w-full px-4">
-                <input
-                  type="text"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  placeholder="Search Your Dream Vacation..."
-                  className="text-[30px] text-center border border-sky-200 rounded-3xl shadow-xl w-[500px] z-50"
-                  onClick={() => setValue("")}
-                />
-              </div>
+              <input
+                type="text"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="Search Your Dream Vacation..."
+                className="text-[30px] text-center border-2 border-sky-900 rounded-2xl shadow-xl w-[500px] z-50"
+                onClick={() => setValue("")}
+              />
             </Autocomplete>
           )}
         </div>

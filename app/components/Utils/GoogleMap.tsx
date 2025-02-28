@@ -53,7 +53,6 @@ function GoogleMap() {
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<Result[] | null>(null);
-  const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
     getGeoPosition().then((pos) => setFinalPos(pos));

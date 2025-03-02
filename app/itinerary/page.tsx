@@ -38,7 +38,7 @@ const Page = () => {
           )}
         </div>
       </div>
-      <div className=" flex justify-end">
+      <div className="flex justify-end">
         <ItineraryList />
       </div>
     </div>

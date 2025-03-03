@@ -18,7 +18,7 @@ const Page = () => {
 
   return (
     <div className="relative flex justify-around w-screen bg-sky-50">
-      <div className="relative flex flex-col ">
+      <div className="relative flex flex-col">
         <div className="flex justify-center mt-10">
           <Input type="text">Itinerary Name</Input>
           <Input type="date">Date</Input>

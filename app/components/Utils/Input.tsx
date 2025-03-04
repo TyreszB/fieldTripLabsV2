@@ -13,7 +13,7 @@ const Input = ({
       <label>{children}</label>
       <input
         type={type}
-        className="border-sky-900 border-2 rounded-xl my-3 text-center px-2"
+        className="border-sky-900 border-2 rounded-xl my-3 shadow-xl text-center px-2"
       />
     </div>
   );

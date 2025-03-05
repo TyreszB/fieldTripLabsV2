@@ -35,6 +35,8 @@ const Page = () => {
     };
 
     console.log(geoLoc);
+
+    // Need to get the cordinates and send it to get attractions
   };
 
   return (

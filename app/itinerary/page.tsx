@@ -17,7 +17,7 @@ const Page = () => {
   const [value, setValue] = useState<string>("");
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
-  const { isLoaded } = useLoadScript({
+  useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY ?? "",
     libraries,
   });

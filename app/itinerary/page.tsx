@@ -27,14 +27,13 @@ const Page = () => {
 
     const place = autocompleteRef.current?.getPlace();
 
-    if (!place) return;
-
-    const geoLoc: GeoPosition = {
-      lat: place.geometry?.location?.lat() ?? 0,
-      lng: place.geometry?.location?.lng() ?? 0,
-    };
-
-    console.log(geoLoc);
+    if (place) {
+      const geoLoc: GeoPosition = {
+        lat: place.geometry?.location?.lat() ?? 0,
+        lng: place.geometry?.location?.lng() ?? 0,
+      };
+      console.log(geoLoc);
+    }
 
     // Need to get the cordinates and send it to get attractions
   };

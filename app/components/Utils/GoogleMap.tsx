@@ -87,22 +87,6 @@ function GoogleMap() {
 
   // Thinking about making the map draggable
 
-  // const handleMapload = (map: google.maps.Map) => {
-  //   mapRef.current = map;
-  // };
-  // const handleDragEnd = () => {
-  //   if (mapRef.current) {
-  //     const center = mapRef.current.getCenter();
-  //     if (center) {
-  //       const newGeoPosition: GeoPosition = {
-  //         lat: center.lat(),
-  //         lng: center.lng(),
-  //       };
-  //       setFinalPos(newGeoPosition);
-  //     }
-  //   }
-  // };
-
   const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();

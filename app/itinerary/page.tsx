@@ -54,7 +54,7 @@ const Page = () => {
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="Search Your Dream Vacation..."
+              placeholder="Search Your Dream Vacation"
               className="text-[30px] text-center border-2 border-sky-900 rounded-2xl shadow-xl w-[500px] z-50"
               onClick={() => setValue("")}
             />

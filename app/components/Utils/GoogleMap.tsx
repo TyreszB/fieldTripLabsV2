@@ -85,8 +85,6 @@ function GoogleMap() {
     }
   }, [finalPos]);
 
-  // Thinking about making the map draggable
-
   const onPlaceChanged = async () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();

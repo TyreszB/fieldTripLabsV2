@@ -19,6 +19,8 @@ const config = {
     pool: {
       min: 2,
       max: 10,
+      acquireTimeoutMillis: 60000,
+      idleTimeoutMillis: 30000,
     },
     migrations: {
       extension: "ts",

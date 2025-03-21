@@ -30,20 +30,4 @@ const config = {
   },
 };
 
-const knex = setupKnex(config.development);
-
-async function runMigrations() {
-  try {
-    console.log("Running migrations...");
-    await knex.migrate.latest();
-    console.log("Migrations completed!");
-  } catch (error) {
-    console.error("Migration error:", error);
-  } finally {
-    await knex.destroy();
-  }
-}
-
-runMigrations();
-
 export default config;

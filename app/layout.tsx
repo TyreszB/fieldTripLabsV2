@@ -25,6 +25,7 @@ export default async function RootLayout({
   const session = await getServerSession();
 
   return (
+    session && (
     <html lang="en">
       <body className={roboto.className}>
         <SessionProvider session={session}>
@@ -35,5 +36,8 @@ export default async function RootLayout({
         </SessionProvider>
       </body>
     </html>
+  ) || (
+    <html lang="en"> index page add </html>
+  )
   );
 }

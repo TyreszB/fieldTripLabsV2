@@ -1,4 +1,5 @@
-import { DynamoDB } from 'aws-sdk';
+import AWS, { DynamoDB } from 'aws-sdk';
+import { v4 as uuidv4 } from 'uuid';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 
@@ -43,7 +44,7 @@ export const createUser = async (event: APIGatewayProxyEvent): Promise<APIGatewa
     const timestamp = new Date().toISOString();
     
     const user: User = {
-      id: `user-${Date.now()}`, // Generate a unique ID
+      id: uuidv4(), 
       userName: requestBody.userName,
       password: requestBody.password, // Should be hashed in production
       firstName: requestBody.firstName,

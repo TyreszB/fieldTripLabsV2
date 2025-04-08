@@ -95,7 +95,7 @@ export const getUser = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify({ message: 'User ID is required' })
+        body: JSON.stringify({ message: 'User is required' })
       };
     }
     

@@ -1,8 +1,8 @@
 "use client";
 import { useSession } from "next-auth/react";
-import capitalize from "./Util/capitalize";
+import capitalize from "../Util/capitalize";
 
-import GoogleMap from "./components/Utils/GoogleMap";
+import GoogleMap from "../components/Utils/GoogleMap";
 
 interface SessionData {
   name: string | null;

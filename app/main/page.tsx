@@ -11,9 +11,7 @@ interface SessionData {
 }
 
 export default function Home() {
-  // const { data } = useSession();
-
-  // const firstName = data?.user?.name?.split(" ")[0] ?? "Guest";
+ 
 
   return (
     <main className="w-screen bg-sky-50">

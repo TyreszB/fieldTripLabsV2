@@ -4,9 +4,8 @@ import { Roboto } from "next/font/google";
 import Sidebar from "./components/Utils/Sidebar";
 import "./global.css";
 
+import AuthProvider from "./components/SessionProvider";
 import { getServerSession } from "next-auth";
-
-import SessionProvider from "./components/SessionProvider";
 
 const roboto = Roboto({
   weight: "400",
@@ -23,17 +22,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession();
+  console.log(session);
 
   return (
     session && (
     <html lang="en">
       <body className={roboto.className}>
-        <SessionProvider session={session}>
+        <AuthProvider session={session}>
           <div className="flex">
             <Sidebar />
             {children}
           </div>
-        </SessionProvider>
+        </AuthProvider>
       </body>
     </html>
   ) || (

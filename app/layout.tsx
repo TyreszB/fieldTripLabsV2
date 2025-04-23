@@ -36,8 +36,6 @@ export default async function RootLayout({
         </AuthProvider>
       </body>
     </html>
-  ) || (
-    <html lang="en"> index page add </html>
-  )
+  ) 
   );
 }

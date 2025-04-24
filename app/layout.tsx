@@ -1,11 +1,13 @@
+
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
-import Sidebar from "./components/Utils/Sidebar";
 import "./global.css";
 
-import AuthProvider from "./components/SessionProvider";
-import { getServerSession } from "next-auth";
+
+import ClientLayout from "./Util/ClientLayout";
+import AuthWrapper from "./Util/AuthWrapper";
+import { useAuth } from "react-oidc-context";
 
 const roboto = Roboto({
   weight: "400",
@@ -16,26 +18,23 @@ export const metadata: Metadata = {
   title: "Field Trip Labs",
 };
 
+
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
-  console.log(session);
-
   return (
-    session && (
-    <html lang="en">
-      <body className={roboto.className}>
-        <AuthProvider session={session}>
-          <div className="flex">
-            <Sidebar />
+      <html lang="en">
+        <body className={roboto.className}>
+        
+         <ClientLayout>
             {children}
-          </div>
-        </AuthProvider>
+          </ClientLayout>
+        
       </body>
     </html>
-  ) 
   );
+
 }

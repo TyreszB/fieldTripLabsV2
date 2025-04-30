@@ -37,3 +37,8 @@ next-env.d.ts
 
 AWSCLIV2.pkg
 certificates
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*

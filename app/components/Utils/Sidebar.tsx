@@ -15,11 +15,8 @@ import capitalize from "../../Util/capitalize";
 export const SidebarContext = createContext({ expanded: true });
 
 const Sidebar = () => {
-  const { data } = useSession();
   const [expanded, setExpanded] = useState(true);
   const contextValue = useMemo(() => ({ expanded }), [expanded]);
-
-  if (!data) redirect("/api/auth/signin");
 
   return (
     <aside className="h-screen">
@@ -50,7 +47,7 @@ const Sidebar = () => {
           </SidebarContext.Provider>
         </ul>
         <div className="border-t flex p-3">
-          {data?.user?.image ? (
+          {/* {data?.user?.image ? (
             <Image
               src={data.user.image}
               alt="Profile Image"
@@ -58,22 +55,22 @@ const Sidebar = () => {
               width={50}
               height={10}
             />
-          ) : (
+          ) : ( */}
             <Image src={Logo} alt="placeholder" className="w-10 h-10" />
-          )}
+          {/* )} */}
           <div
             className={`flex justify-between items-center overflow-hidden transition-all ${
               expanded ? "ml-3 w-52" : "w-0"
             }`}
           >
-            <div className="leading-4">
+            {/* <div className="leading-4">
               <h4 className="font-semibold">{`${capitalize(
                 data?.user?.name?.split(" ")[0] ?? ""
               )}  ${capitalize(data?.user?.name?.split(" ")[1] || "")}`}</h4>
               <span className="text-xs text-gray-600">
                 {capitalize(data?.user?.email ?? "")}
               </span>
-            </div>
+            </div> */}
           </div>
 
           <button

@@ -2,10 +2,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
+
 import "./global.css";
-
-
-import ClientLayout from "./Util/ClientLayout";
 
 
 const roboto = Roboto({
@@ -24,14 +22,21 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
+
+ 
+
+
   return (
+   
       <html lang="en">
-        <body className={roboto.className}>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
+      <body className={roboto.className}>
+        {children}
       </body>
     </html>
+       
+   
   );
 
 }

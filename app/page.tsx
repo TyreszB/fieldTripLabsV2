@@ -1,28 +1,30 @@
 "use client";
-import { useSession } from "next-auth/react";
+
 import capitalize from "./Util/capitalize";
+import { Authenticator } from "@aws-amplify/ui-react";
+import { Amplify } from "aws-amplify";
+import outputs from "../amplify_outputs.json";
+import "@aws-amplify/ui-react/styles.css";
 
 import GoogleMap from "./components/Utils/GoogleMap";
+Amplify.configure(outputs);
 
-interface SessionData {
-  name: string | null;
-  email: string | null;
-  image: string | null;
-}
+
 
 export default function Home() {
-  // const { data } = useSession();
 
-  // const firstName = data?.user?.name?.split(" ")[0] ?? "Guest";
 
   return (
+    <Authenticator>
+      {({ signOut, user }) => (
     <main className="w-screen bg-sky-50">
       <div className="flex justify-around">
-        {/* <div className="py-5 text-[50px]">Welcome {capitalize(firstName)}</div> */}
       </div>
       <div className="w-auto">
         <GoogleMap />
       </div>
     </main>
+    )}
+    </Authenticator>
   );
 }

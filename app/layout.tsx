@@ -6,8 +6,7 @@ import "./global.css";
 
 
 import ClientLayout from "./Util/ClientLayout";
-import AuthWrapper from "./Util/AuthWrapper";
-import { useAuth } from "react-oidc-context";
+
 
 const roboto = Roboto({
   weight: "400",
@@ -28,11 +27,9 @@ export default async function RootLayout({
   return (
       <html lang="en">
         <body className={roboto.className}>
-        
-         <ClientLayout>
+          <ClientLayout>
             {children}
           </ClientLayout>
-        
       </body>
     </html>
   );

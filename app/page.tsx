@@ -15,6 +15,9 @@ export default function Home() {
     <Authenticator>
       {({ signOut, user }) => (
         <main className="w-screen bg-sky-50">
+          <div>
+            <h1>Welcome {capitalize("Tyresz")}</h1>
+          </div>
      
         </main>
       )}

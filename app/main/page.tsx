@@ -19,7 +19,7 @@ export default function Home() {
       <ClientLayout>
 
       <div className="flex justify-around">
-        {/* <div className="py-5 text-[50px]">Welcome {capitalize(firstName)}</div> */}
+        
       </div>
       <div className="w-auto">
         <GoogleMap />

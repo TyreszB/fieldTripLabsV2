@@ -4,11 +4,6 @@ import capitalize from "../Util/capitalize";
 import GoogleMap from "../components/Utils/GoogleMap";
 import ClientLayout from "../Util/ClientLayout";
 
-interface SessionData {
-  name: string | null;
-  email: string | null;
-  image: string | null;
-}
 
 export default function Home() {
  

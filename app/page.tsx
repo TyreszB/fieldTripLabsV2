@@ -16,7 +16,7 @@ export default function Home() {
       {({ signOut, user }) => (
         <main className="w-screen bg-sky-50">
           <div>
-            <h1>Welcome {capitalize("Tyresz")}</h1>
+            <h1>Welcome {capitalize(user.username)}</h1>
           </div>
      
         </main>

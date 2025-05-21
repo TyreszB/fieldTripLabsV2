@@ -12,6 +12,7 @@ export default function Home() {
   Amplify.configure(outputs);
 
   return (
+    // TODO: Find a way to edit the Authenticator component 
     <Authenticator>
       {({ signOut, user }) => (
         <main className="w-screen bg-sky-50">

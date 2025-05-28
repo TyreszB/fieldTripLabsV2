@@ -1,15 +1,12 @@
 "use client";
 import capitalize from "./Util/capitalize";
-import { Authenticator, View, Image } from "@aws-amplify/ui-react";
-import { Amplify } from "aws-amplify";
-import outputs from "../amplify_outputs.json";
+import { Authenticator, View, Image, Text } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import Logo from "../public/logo.png";
 import { useTheme } from "@aws-amplify/ui-react";
 
 
 export default function Home() {
-  Amplify.configure(outputs);
 
   const components = {
     Header() {
@@ -24,6 +21,18 @@ export default function Home() {
         </View>
       );
     },
+
+    Footer() {
+      const { tokens } = useTheme();
+  
+      return (
+        <View textAlign="center" padding={tokens.space.large}>
+          <Text color={tokens.colors.neutral[80]}>
+            &copy; Field Trip Labs
+          </Text>
+        </View>
+      );
+    },
 }
       
 
@@ -34,7 +43,6 @@ export default function Home() {
           <div>
             <h1>Welcome {capitalize(user?.username || '')}</h1>
           </div>
-     
         </main>
       )}
     </Authenticator>

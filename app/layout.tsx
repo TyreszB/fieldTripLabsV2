@@ -5,6 +5,8 @@ import { Roboto } from "next/font/google";
 
 import "./global.css";
 
+import Auth from "./Util/Auth";
+import Sidebar from "./components/Utils/Sidebar";
 
 const roboto = Roboto({
   weight: "400",
@@ -32,7 +34,9 @@ export default async function RootLayout({
    
     <html lang="en">
       <body>
-        {children}
+        <Auth>
+            {children}  
+        </Auth>
       </body>
     </html>
        

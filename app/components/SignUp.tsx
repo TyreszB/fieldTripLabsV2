@@ -3,6 +3,8 @@ import { Authenticator, useTheme, View, Text, Image } from '@aws-amplify/ui-reac
 import Logo from "../../public/logo.png";
 import "@aws-amplify/ui-react/styles.css";
 
+// TODO: need to fix the auth for google
+
 
 
 const components = {

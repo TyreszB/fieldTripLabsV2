@@ -15,7 +15,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
       
 
   return (
-    <main className="w-screen bg-sky-50">
+    <main className="w-screen bg-sky-50" style={{ fontFamily: roboto.style.fontFamily }}  >
       <Sidebar />
       {children}
     </main>

@@ -8,10 +8,12 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   const { data: session } = useSession();
 
+  //need to figure out how to handle the cognito sign in
+
   if (!session) {
     return (
     <div>
-        <button onClick={() => signIn("google")}>Sign in with google</button>
+      <button onClick={() => signIn("google")}>Sign in with google</button>
       <button onClick={() => signIn("cognito")}>Sign in with cognito</button>
       <button onClick={() => signOut()}>Sign out</button>
     </div>
